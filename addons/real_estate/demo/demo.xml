@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Demo Record 1 -->
+    <record id="record_1" model="estate.property">
+        <field name="name">Villa Rose</field>
+        <field name="description">Spacious villa with garden</field>
+        <field name="postcode">10001</field>
+        <field name="date_availability">2025-05-01</field>
+        <field name="expected_price">500000.00</field>
+        <field name="selling_price">480000.00</field>
+        <field name="bedrooms">4</field>
+        <field name="living_area">250</field>
+        <field name="facades">3</field>
+        <field name="garage">True</field>
+        <field name="garden">True</field>
+        <field name="garden_area">100</field>
+        <field name="garden_orientation">south</field>
+    </record>
+
+    <!-- Demo Record 2 -->
+    <record id="record_2" model="estate.property">
+        <field name="name">Green Meadows</field>
+        <field name="description">Modern house with a beautiful garden</field>
+        <field name="postcode">20002</field>
+        <field name="date_availability">2025-06-01</field>
+        <field name="expected_price">750000.00</field>
+        <field name="selling_price">730000.00</field>
+        <field name="bedrooms">5</field>
+        <field name="living_area">300</field>
+        <field name="facades">4</field>
+        <field name="garage">True</field>
+        <field name="garden">True</field>
+        <field name="garden_area">150</field>
+        <field name="garden_orientation">east</field>
+    </record>
+
+    <!-- Demo Record 3 -->
+    <record id="record_3" model="estate.property">
+        <field name="name">Sunnybrook</field>
+        <field name="description">Cozy 2-bedroom apartment with a garden</field>
+        <field name="postcode">30003</field>
+        <field name="date_availability">2025-03-15</field>
+        <field name="expected_price">200000.00</field>
+        <field name="selling_price">190000.00</field>
+        <field name="bedrooms">2</field>
+        <field name="living_area">80</field>
+        <field name="facades">2</field>
+        <field name="garage">False</field>
+        <field name="garden">True</field>
+        <field name="garden_area">30</field>
+        <field name="garden_orientation">north</field>
+    </record>
+
+    <!-- Demo Record 4 -->
+    <record id="record_4" model="estate.property">
+        <field name="name">Oceanview Tower</field>
+        <field name="description">Luxury penthouse with panoramic sea view</field>
+        <field name="postcode">40004</field>
+        <field name="date_availability">2025-07-01</field>
+        <field name="expected_price">1200000.00</field>
+        <field name="selling_price">1150000.00</field>
+        <field name="bedrooms">3</field>
+        <field name="living_area">180</field>
+        <field name="facades">1</field>
+        <field name="garage">True</field>
+        <field name="garden">False</field>
+        <field name="garden_area">0</field>
+        <field name="garden_orientation">none</field>
+    </record>
+
+    <!-- Demo Record 5 -->
+    <record id="record_5" model="estate.property">
+        <field name="name">Forest Retreat</field>
+        <field name="description">A secluded cabin in the woods</field>
+        <field name="postcode">50005</field>
+        <field name="date_availability">2025-09-01</field>
+        <field name="expected_price">350000.00</field>
+        <field name="selling_price">340000.00</field>
+        <field name="bedrooms">2</field>
+        <field name="living_area">120</field>
+        <field name="facades">2</field>
+        <field name="garage">True</field>
+        <field name="garden">True</field>
+        <field name="garden_area">50</field>
+        <field name="garden_orientation">west</field>
+    </record>
+
+    <!-- Demo Record 6 -->
+    <record id="record_6" model="estate.property">
+        <field name="name">City Loft</field>
+        <field name="description">Chic urban loft with open space</field>
+        <field name="postcode">60006</field>
+        <field name="date_availability">2025-04-01</field>
+        <field name="expected_price">400000.00</field>
+        <field name="selling_price">390000.00</field>
+        <field name="bedrooms">1</field>
+        <field name="living_area">75</field>
+        <field name="facades">2</field>
+        <field name="garage">False</field>
+        <field name="garden">False</field>
+        <field name="garden_area">0</field>
+        <field name="garden_orientation">none</field>
+    </record>
+
+    <!-- Demo Record 7 -->
+    <record id="record_7" model="estate.property">
+        <field name="name">Mountain Lodge</field>
+        <field name="description">Charming lodge in the mountains</field>
+        <field name="postcode">70007</field>
+        <field name="date_availability">2025-10-01</field>
+        <field name="expected_price">600000.00</field>
+        <field name="selling_price">580000.00</field>
+        <field name="bedrooms">4</field>
+        <field name="living_area">200</field>
+        <field name="facades">3</field>
+        <field name="garage">True</field>
+        <field name="garden">True</field>
+        <field name="garden_area">80</field>
+        <field name="garden_orientation">south</field>
+    </record>
+
+    <!-- Demo Record 8 -->
+    <record id="record_8" model="estate.property">
+        <field name="name">Desert Oasis</field>
+        <field name="description">Spacious villa in the desert</field>
+        <field name="postcode">80008</field>
+        <field name="date_availability">2025-11-01</field>
+        <field name="expected_price">1000000.00</field>
+        <field name="selling_price">950000.00</field>
+        <field name="bedrooms">6</field>
+        <field name="living_area">400</field>
+        <field name="facades">5</field>
+        <field name="garage">True</field>
+        <field name="garden">True</field>
+        <field name="garden_area">200</field>
+        <field name="garden_orientation">east</field>
+    </record>
+
+    <!-- Demo Record 9 -->
+    <record id="record_9" model="estate.property">
+        <field name="name">Riverfront Villa</field>
+        <field name="description">Villa with private access to the river</field>
+        <field name="postcode">90009</field>
+        <field name="date_availability">2025-12-01</field>
+        <field name="expected_price">800000.00</field>
+        <field name="selling_price">790000.00</field>
+        <field name="bedrooms">4</field>
+        <field name="living_area">350</field>
+        <field name="facades">3</field>
+        <field name="garage">True</field>
+        <field name="garden">True</field>
+        <field name="garden_area">120</field>
+        <field name="garden_orientation">north</field>
+    </record>
+
+    <!-- Demo Record 10 -->
+    <record id="record_10" model="estate.property">
+        <field name="name">Luxury Estate</field>
+        <field name="description">Exclusive estate with multiple facilities</field>
+        <field name="postcode">10010</field>
+        <field name="date_availability">2025-08-01</field>
+        <field name="expected_price">1500000.00</field>
+        <field name="selling_price">1400000.00</field>
+        <field name="bedrooms">7</field>
+        <field name="living_area">500</field>
+        <field name="facades">6</field>
+        <field name="garage">True</field>
+        <field name="garden">True</field>
+        <field name="garden_area">300</field>
+        <field name="garden_orientation">west</field>
+    </record>
+</odoo>

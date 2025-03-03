@@ -1,0 +1,6 @@
+{
+  "python.languageServer": "None",
+  "emmet.includeLanguages": {
+    "xml": "html"
+  }
+}
