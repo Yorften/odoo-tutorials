@@ -42,7 +42,7 @@
 
     <menuitem
         id="real_estate_menu_property_tags"
-        name="Tags"
+        name="Property Tags"
         parent="real_estate_menu_settings"
         action="real_estate.estate_property_tag_action"
         sequence="10" />
