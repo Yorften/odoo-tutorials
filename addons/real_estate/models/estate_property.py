@@ -26,9 +26,7 @@ class EstateProperty(models.Model):
     name = fields.Char(string="Name", required=True)
     description = fields.Char(string="Description")
     postcode = fields.Char(string="Postcode")
-    date_availability = fields.Date(
-        string="Date Availability", copy=False, default=_default_date
-    )
+    date_availability = fields.Date(string="Date Availability", copy=False, default=_default_date)
     expected_price = fields.Float(string="Expected Price", required=True)
     selling_price = fields.Float(string="Selling Price", readonly=True, copy=False)
     bedrooms = fields.Integer(string="Bed Rooms", default=2)
@@ -78,6 +76,10 @@ class EstateProperty(models.Model):
     @api.depends("offer_ids.price")
     def _compute_best_offer(self):
         for property in self:
-            property.best_offer = (
-                max(property.offer_ids.mapped("price")) if property.offer_ids else 0
-            )
+            property.best_offer = max(property.offer_ids.mapped("price")) if property.offer_ids else 0
+
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        for estate in self:
+            if not estate.garden:
+                estate.garden_area = 0

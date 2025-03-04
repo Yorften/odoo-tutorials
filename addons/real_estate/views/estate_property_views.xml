@@ -60,7 +60,8 @@
                                 <field name="living_area" />
                                 <field name="garage" />
                                 <field name="garden" />
-                                <field name="garden_area" />
+                                <field name="garden_area"
+                                    readonly="garden" />
                                 <field name="garden_orientation" />
                                 <field name="total_area" />
                             </group>
@@ -73,7 +74,40 @@
                         </page>
                         <page name="page_3" string="Offers">
                             <group>
-                                <field name="offer_ids" />
+                                <field name="offer_ids" invisible="selling_price != 0">
+                                    <list string="Real Estate">
+                                        <field name="price" />
+                                        <field name="property_id" />
+                                        <field name="partner_id" />
+                                        <field name="property_type_id" />
+                                        <field name="validity" />
+                                        <field name="date_deadline" />
+                                        <button icon="fa-check" title="test" type="object" name="action_accept"
+                                            invisible=" status == 'accepted' " />
+                                        <button icon="fa-times" title="test" type="object" name="action_refuse"
+                                            invisible=" status == 'accepted' " />
+                                        <button icon="fa-undo" title="test" type="object" name="action_undo"
+                                            invisible=" status != 'accepted' " />
+                                        <field name="status" />
+                                    </list>
+                                </field>
+                                <field name="offer_ids" invisible="selling_price == 0">
+                                    <list string="Real Estate" create="0">
+                                        <field name="price" />
+                                        <field name="property_id" />
+                                        <field name="partner_id" />
+                                        <field name="property_type_id" />
+                                        <field name="validity" />
+                                        <field name="date_deadline" />
+                                        <button icon="fa-check" title="test" type="object" name="action_accept"
+                                            invisible=" status == 'accepted' " />
+                                        <button icon="fa-times" title="test" type="object" name="action_refuse"
+                                            invisible=" status == 'accepted' " />
+                                        <button icon="fa-undo" title="test" type="object" name="action_undo"
+                                            invisible=" status != 'accepted' " />
+                                        <field name="status" />
+                                    </list>
+                                </field>
                             </group>
                         </page>
                     </notebook>
