@@ -30,11 +30,16 @@
         <field name="arch" type="xml">
             <form string="Real Estate">
                 <sheet>
+                    <header>
+                        <field name="state" widget="statusbar" readonly="True" />
+                    </header>
                     <group>
-                        <h1>
-                            <p>Name :</p>
-                            <field name="name" />
-                        </h1>
+                        <group>
+                            <h1>
+                                <p>Name :</p>
+                                <field name="name" />
+                            </h1>
+                        </group>
                     </group>
                     <group>
                         <field name="tag_ids" widget="many2many_tags" />
@@ -49,7 +54,18 @@
                             <field name="expected_price" />
                             <field name="best_offer" />
                             <field name="selling_price" />
-                            <field name="state" />
+                            <button type="object" name="action_sold"
+                                invisible=" state != 'accepted' ">
+                                Sold
+                            </button>
+                            <button title="test" type="object" name="action_cancel"
+                                invisible=" state == 'sold' or state == 'canceled' or state == 'accepted' ">
+                                Cancel
+                            </button>
+                            <button icon="fa-undo" title="test" type="object" name="action_undo"
+                                invisible=" state == 'new' or state == 'recieved' or state == 'accepted' ">
+                                Undo
+                            </button>
                         </group>
                     </group>
                     <notebook>

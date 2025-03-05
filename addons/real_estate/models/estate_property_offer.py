@@ -52,6 +52,7 @@ class EstatePropertyOffer(models.Model):
         self.status = "accepted"
         self.property_id.selling_price = self.price
         self.property_id.state = "accepted"
+        self.property_id.buyer_id = self.partner_id
 
     def action_refuse(self):
         self.ensure_one()
@@ -63,6 +64,7 @@ class EstatePropertyOffer(models.Model):
         self.ensure_one()
         self.property_id.selling_price = 0
         self.property_id.state = "recieved"
+        self.property_id.buyer_id = False
         return self.with_context(bypass_status_check=True).write({"status": ""})
 
     def _check_property_state(self, val):
