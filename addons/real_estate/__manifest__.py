@@ -14,7 +14,7 @@
     "sequence": 1,
     "application": True,
     "installable": True,
-    "depends": ["base"],
+    "depends": ["base", "base_setup"],
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",
@@ -24,7 +24,11 @@
         "views/estate_property_tag_views.xml",
         "views/estate_menu.xml",
     ],
-    "assets": {},
+    "assets": {
+        "web.assets_backend": [
+            "real_estate/static/src/js/estate_offer_widget.js",
+        ],
+    },
     "demo": ["demo/demo.xml"],
     "license": "AGPL-3",
 }

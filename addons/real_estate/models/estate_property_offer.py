@@ -90,6 +90,6 @@ class EstatePropertyOffer(models.Model):
 
     def unlink(self):
         for offer in self:
-            if self.status == "accepted":
+            if offer.status == "accepted":
                 raise UserError(_("You cannot delete an accepted offer."))
             return super(EstatePropertyOffer, self).unlink()

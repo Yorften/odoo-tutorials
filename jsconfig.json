@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "target": "ES6",
+    "module": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@web/*": [
+        "/Users/karizma/Desktop/odoo_tutorial/odoo-18.0/addons/web/static/src/*"
+      ]
+    }
+  },
+  "include": [
+    "./**/*.js",
+    "./**/*.ts"
+  ]
+}
