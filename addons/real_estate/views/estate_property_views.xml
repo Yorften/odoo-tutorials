@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
     <record id="estate_property_view_search" model="ir.ui.view">
         <field name="name">estate.property.view.search</field>
         <field name="model">estate.property</field>
@@ -31,7 +30,7 @@
             <form string="Real Estate">
                 <sheet>
                     <header>
-                        <field name="state" widget="statusbar" readonly="True" />
+                        <field name="state" widget="statusbar" />
                     </header>
                     <group>
                         <group>
@@ -99,11 +98,11 @@
                                         <field name="validity" />
                                         <field name="date_deadline" />
                                         <button icon="fa-check" title="test" type="object" name="action_accept"
-                                            invisible=" status == 'accepted' " />
+                                            invisible=" status == 'accepted' or property_id.state == 'canceled' or property_id.state == 'sold' " />
                                         <button icon="fa-times" title="test" type="object" name="action_refuse"
-                                            invisible=" status == 'accepted' " />
+                                            invisible=" status == 'accepted' or property_id.state == 'canceled' or property_id.state == 'sold' " />
                                         <button icon="fa-undo" title="test" type="object" name="action_undo"
-                                            invisible=" status != 'accepted' " />
+                                            invisible=" status != 'accepted' or property_id.state == 'canceled' or property_id.state == 'sold' " />
                                         <field name="status" />
                                     </list>
                                 </field>
@@ -116,11 +115,11 @@
                                         <field name="validity" />
                                         <field name="date_deadline" />
                                         <button icon="fa-check" title="test" type="object" name="action_accept"
-                                            invisible=" status == 'accepted' " />
+                                            invisible=" status == 'accepted' or property_id.state == 'canceled' or property_id.state == 'sold' " />
                                         <button icon="fa-times" title="test" type="object" name="action_refuse"
-                                            invisible=" status == 'accepted' " />
+                                            invisible=" status == 'accepted' or property_id.state == 'canceled' or property_id.state == 'sold' " />
                                         <button icon="fa-undo" title="test" type="object" name="action_undo"
-                                            invisible=" status != 'accepted' " />
+                                            invisible=" status != 'accepted' or property_id.state == 'canceled' or property_id.state == 'sold' " />
                                         <field name="status" />
                                     </list>
                                 </field>

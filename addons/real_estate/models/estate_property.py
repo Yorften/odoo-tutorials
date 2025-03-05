@@ -3,6 +3,7 @@ from odoo.tools.date_utils import relativedelta
 from odoo.exceptions import UserError
 from lxml import etree
 
+import json
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -21,6 +22,7 @@ class EstateProperty(models.Model):
             ("sold", "Sold"),
             ("canceled", "Canceled"),
         ],
+        readonly=True,
         required=True,
         copy=False,
         default="new",
@@ -28,12 +30,14 @@ class EstateProperty(models.Model):
         store=True,
     )
 
+    currency_id = fields.Many2one("res.currency", string="Currency", default=lambda self: self.env.company.currency_id)
+
     name = fields.Char(string="Name", required=True)
     description = fields.Char(string="Description")
     postcode = fields.Char(string="Postcode")
     date_availability = fields.Date(string="Date Availability", copy=False, default=fields.Date.today() + relativedelta(days=7))
-    expected_price = fields.Float(string="Expected Price", required=True)
-    selling_price = fields.Float(string="Selling Price", readonly=True, copy=False)
+    expected_price = fields.Monetary(string="Expected Price", required=True, currency_field="currency_id")
+    selling_price = fields.Monetary(string="Selling Price", readonly=True, copy=False, currency_field="currency_id")
     bedrooms = fields.Integer(string="Bed Rooms", default=2)
     living_area = fields.Integer(string="Living Area")
     facades = fields.Integer(string="Facades")
@@ -113,6 +117,9 @@ class EstateProperty(models.Model):
         if view_type == "form":
             doc = etree.XML(res["arch"])
             for node in doc.xpath("//field"):
+                if node.get("readonly") in ("1", "True", "true"):
+                    continue
+
                 if node.xpath("ancestor::list"):
                     node.set("readonly", "property_id.state == 'canceled' or property_id.state == 'sold'")
                 else:
@@ -135,7 +142,11 @@ class EstateProperty(models.Model):
 
     def action_undo(self):
         self.ensure_one()
-        if self.offer_ids:
+        statuses = self.offer_ids.mapped("status")
+
+        if "accepted" in statuses:
+            self.state = "accepted"
+        elif statuses:
             self.state = "recieved"
         else:
             self.state = "new"
