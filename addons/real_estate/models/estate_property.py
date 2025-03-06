@@ -112,20 +112,19 @@ class EstateProperty(models.Model):
                     }
 
     @api.model
-    def get_view(self, view_id=None, view_type="form", **options):
-        res = super().get_view(view_id=view_id, view_type=view_type, **options)
+    def _get_view(self, view_id=None, view_type="form", **options):
+        arch, view = super()._get_view(view_id=view_id, view_type=view_type, **options)
         if view_type == "form":
-            doc = etree.XML(res["arch"])
-            for node in doc.xpath("//field"):
-                if node.get("readonly") in ("1", "True", "true"):
+            for node in arch.xpath("//field"):
+                field_name = node.get("name")
+                field = self._fields.get(field_name)
+                if field and field.readonly:
                     continue
-
                 if node.xpath("ancestor::list"):
                     node.set("readonly", "property_id.state == 'canceled' or property_id.state == 'sold'")
                 else:
                     node.set("readonly", "state == 'canceled' or state == 'sold'")
-            res["arch"] = etree.tostring(doc, pretty_print=True, encoding="unicode")
-        return res
+        return arch, view
 
     def action_sold(self):
         self.ensure_one()
