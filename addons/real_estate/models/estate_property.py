@@ -153,7 +153,6 @@ class EstateProperty(models.Model):
     def action_undo(self):
         self.ensure_one()
         statuses = self.offer_ids.mapped("status")
-
         if "accepted" in statuses:
             self.state = "accepted"
         elif statuses:
