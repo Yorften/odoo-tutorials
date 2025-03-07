@@ -1,8 +1,8 @@
 from odoo import models, fields, api, _
 from odoo.tools.date_utils import relativedelta
 from odoo.exceptions import UserError
-from lxml import etree
 
+from lxml import etree
 import json
 import logging
 
@@ -118,12 +118,23 @@ class EstateProperty(models.Model):
             for node in arch.xpath("//field"):
                 field_name = node.get("name")
                 field = self._fields.get(field_name)
+
+                # Get xml readonly attribute
+                readonly_modifier = node.attrib.get("readonly")
+
+                # Check model field readonly attribute
                 if field and field.readonly:
                     continue
+
+                readonly_condition = "state == 'canceled' or state == 'sold'"
+
                 if node.xpath("ancestor::list"):
-                    node.set("readonly", "property_id.state == 'canceled' or property_id.state == 'sold'")
-                else:
-                    node.set("readonly", "state == 'canceled' or state == 'sold'")
+                    readonly_condition = "property_id.state == 'canceled' or property_id.state == 'sold'"
+
+                if readonly_modifier:
+                    readonly_condition += " or " + readonly_modifier
+
+                node.set("readonly", readonly_condition)
         return arch, view
 
     def action_sold(self):

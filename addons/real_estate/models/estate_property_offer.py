@@ -1,6 +1,8 @@
 from odoo import models, fields, api, _
 from odoo.tools.date_utils import relativedelta
 from odoo.exceptions import UserError
+
+from lxml import etree
 import logging
 
 _logger = logging.getLogger(__name__)
