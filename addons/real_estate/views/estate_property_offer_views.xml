@@ -58,16 +58,14 @@
         <field name="arch" type="xml">
             <list string="Real Estate">
                 <field name="price" />
-                <field name="property_id" />
                 <field name="partner_id" />
-                <field name="property_type_id" />
                 <field name="validity" />
                 <field name="date_deadline" />
-                <button icon="fa-check" title="test" type="object" name="action_accept"
+                <button icon="fa-check" title="Accept" type="object" name="action_accept"
                     invisible=" status == 'accepted' or property_state == 'canceled' or property_state == 'sold' " />
-                <button icon="fa-times" title="test" type="object" name="action_refuse"
+                <button icon="fa-times" title="Refuse" type="object" name="action_refuse"
                     invisible=" status == 'accepted' or property_state == 'canceled' or property_state == 'sold' " />
-                <button icon="fa-undo" title="test" type="object" name="action_undo"
+                <button icon="fa-undo" title="Undo" type="object" name="action_undo"
                     invisible=" status != 'accepted' or property_state == 'canceled' or property_state == 'sold' " />
                 <field name="status" />
             </list>

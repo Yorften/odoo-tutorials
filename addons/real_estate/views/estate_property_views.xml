@@ -41,18 +41,20 @@
                         </group>
                     </group>
                     <group>
-                        <field name="tag_ids" widget="many2many_tags" />
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
                     </group>
                     <group>
                         <group>
-                            <field name="property_type_id" />
+                            <field name="property_type_id" options="{'no_create_edit': True, 'no_create': True}" />
                             <field name="postcode" />
                             <field name="date_availability" />
                         </group>
                         <group>
                             <field name="expected_price" />
                             <field name="best_offer" />
+                            <field name="best_offer_percentage" widget="percentage" />
                             <field name="selling_price" />
+                            <field name="currency_id" invisible="True" />
                             <button type="object" name="action_sold"
                                 invisible=" state != 'accepted' ">
                                 Sold

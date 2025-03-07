@@ -62,7 +62,7 @@
         <field name="garage">True</field>
         <field name="garden">False</field>
         <field name="garden_area">0</field>
-        <field name="garden_orientation">none</field>
+        <field name="garden_orientation"></field>
     </record>
 
     <!-- Demo Record 5 -->
@@ -94,7 +94,7 @@
         <field name="garage">False</field>
         <field name="garden">False</field>
         <field name="garden_area">0</field>
-        <field name="garden_orientation">none</field>
+        <field name="garden_orientation"></field>
     </record>
 
     <!-- Demo Record 7 -->

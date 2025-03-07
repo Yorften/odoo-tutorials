@@ -1,6 +1,6 @@
 from odoo import models, fields, api, _
 from odoo.tools.date_utils import relativedelta
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 from lxml import etree
 import json
@@ -54,7 +54,13 @@ class EstateProperty(models.Model):
         string="Garden Orientation",
     )
     total_area = fields.Float(string="Total Area", compute="_compute_total_area")
-    best_offer = fields.Float(string="Best Offer", compute="_compute_best_offer")
+    best_offer = fields.Monetary(string="Best Offer", currency_field="currency_id", compute="_compute_best_offer")
+    best_offer_percentage = fields.Float(string="Best Offer Percentage", compute="_compute_best_offer_percentage")
+
+    _sql_constraints = [
+        ("expected_price_positive", "check(expected_price > 0)", "Expected price must be positive"),
+        ("selling_price_positive", "check(selling_price > 0)", "Expected price must be positive"),
+    ]
 
     # RELATIONAL FIELDS
 
@@ -76,6 +82,14 @@ class EstateProperty(models.Model):
 
     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
 
+    @api.constrains("selling_price")
+    def _check_selling_price(self):
+        for property in self:
+            if property.selling_price == 0:
+                return
+            if property.selling_price < property.expected_price * 0.9:
+                raise ValidationError("Property selling price cannot be lower thant `90%` of the expected price.")
+
     @api.depends("garden_area", "living_area")
     def _compute_total_area(self):
         for property in self:
@@ -85,6 +99,13 @@ class EstateProperty(models.Model):
     def _compute_best_offer(self):
         for property in self:
             property.best_offer = max(property.offer_ids.mapped("price")) if property.offer_ids else 0
+
+    @api.depends("best_offer")
+    def _compute_best_offer_percentage(self):
+        for property in self:
+            property.best_offer_percentage = (
+                (property.best_offer / property.expected_price) if property.best_offer else 0
+            )
 
     @api.depends("offer_ids")
     def _compute_property_state(self):

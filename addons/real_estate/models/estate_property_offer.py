@@ -33,6 +33,10 @@ class EstatePropertyOffer(models.Model):
     property_type_id = fields.Many2one(related="property_id.property_type_id")
     property_state = fields.Selection(related="property_id.state", store=True, string="Property State")
 
+    _sql_constraints = [
+        ("price_positive", "check(price > 0)", "Price must be positive"),
+    ]
+
     @api.depends("validity", "create_date")
     def _compute_date_deadline(self):
         for offer in self:
