@@ -56,7 +56,7 @@
         <field name="name">estate.property.offer.view.list.buttons</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <list string="Real Estate" default_order="price desc">
+            <list string="Real Estate" editable="bottom" default_order="price desc">
                 <field name="price" />
                 <field name="partner_id" />
                 <field name="validity" />

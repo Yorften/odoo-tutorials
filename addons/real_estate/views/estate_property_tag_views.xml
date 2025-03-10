@@ -35,7 +35,7 @@
         <field name="name">estate.property.tag.view.list</field>
         <field name="model">estate.property.tag</field>
         <field name="arch" type="xml">
-            <list string="Real Estate" default_order="name">
+            <list string="Real Estate" editable="bottom" default_order="name">
                 <field name="name" />
             </list>
         </field>
