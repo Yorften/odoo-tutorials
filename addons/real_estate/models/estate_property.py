@@ -12,7 +12,8 @@ _logger = logging.getLogger(__name__)
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Estate property model"
-
+    _inherit = ['mail.thread']
+    
     active = fields.Boolean(default=True)
     state = fields.Selection(
         [
@@ -58,8 +59,8 @@ class EstateProperty(models.Model):
     best_offer_percentage = fields.Float(string="Best Offer Percentage", compute="_compute_best_offer_percentage")
 
     _sql_constraints = [
-        ("expected_price_positive", "check(expected_price > 0)", "Expected price must be positive"),
-        ("selling_price_positive", "check(selling_price > 0)", "Expected price must be positive"),
+        ("expected_price_positive", "check(expected_price >= 0)", "Expected price must be positive"),
+        ("selling_price_positive", "check(selling_price >= 0)", "Expected price must be positive"),
     ]
 
     # RELATIONAL FIELDS
