@@ -45,7 +45,8 @@
         <field name="name">estate.property.type.view.list</field>
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
-            <list string="Real Estate">
+            <list string="Real Estate" default_order="name">
+                <field name="sequence" widget="handle" />
                 <field name="name" />
             </list>
         </field>

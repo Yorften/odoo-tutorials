@@ -77,8 +77,8 @@
                                 <field name="living_area" />
                                 <field name="garage" />
                                 <field name="garden" />
-                                <field name="garden_area" readonly="garden == False" />
-                                <field name="garden_orientation" readonly="garden == False" />
+                                <field name="garden_area" readonly="garden == False" invisible="garden == False"/>
+                                <field name="garden_orientation" readonly="garden == False" invisible="garden == False" />
                                 <field name="total_area" />
                             </group>
                         </page>
@@ -105,7 +105,7 @@
         <field name="name">estate.property.view.list</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <list string="Real Estate">
+            <list string="Real Estate" default_order="id">
                 <field name="name" />
                 <field name="postcode" />
                 <field name="bedrooms" />
