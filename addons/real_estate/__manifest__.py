@@ -24,6 +24,7 @@
         "views/estate_property_tag_views.xml",
         "views/user_views.xml",
         "views/estate_menu.xml",
+        "data/cron.xml",
     ],
     "assets": {
         "web.assets_backend": [

@@ -130,7 +130,7 @@ class EstateProperty(models.Model):
                         }
                     }
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         properties = super(EstateProperty, self).create(vals)
 

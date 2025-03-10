@@ -2,6 +2,7 @@ from odoo import models, fields, api, _
 from odoo.tools.date_utils import relativedelta
 from odoo.exceptions import UserError
 
+from datetime import date, timedelta
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -133,3 +134,13 @@ class EstatePropertyOffer(models.Model):
             if offer.status == "accepted":
                 raise UserError(_("You cannot delete an accepted offer."))
             return super(EstatePropertyOffer, self).unlink()
+
+
+    def cron_auto_confirm_best_offer(self):
+        today = date.today()
+        expired_properties = self.env["estate.property"].search(
+            [("date_deadline", "<=", today), ("state", "=", "recieved"), ("offer_ids", "!=", False)]
+        )
+        for property in expired_properties:
+            best_offer = property.offer_ids.filtered(lambda o: o.status != "refused").sorted("price", reverse=True)[:1]
+            best_offer.action_accept()
