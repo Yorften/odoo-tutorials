@@ -2,8 +2,6 @@ from odoo import models, fields, api, _
 from odoo.tools.date_utils import relativedelta
 from odoo.exceptions import UserError, ValidationError
 
-from lxml import etree
-import json
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -12,8 +10,9 @@ _logger = logging.getLogger(__name__)
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Estate property model"
-    _inherit = ['mail.thread']
-    
+    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _order = "id desc"
+
     active = fields.Boolean(default=True)
     state = fields.Selection(
         [
@@ -89,7 +88,7 @@ class EstateProperty(models.Model):
             if property.selling_price == 0:
                 return
             if property.selling_price < property.expected_price * 0.9:
-                raise ValidationError("Property selling price cannot be lower thant `90%` of the expected price.")
+                raise ValidationError(_("Property selling price cannot be lower thant 90% of the expected price."))
 
     @api.depends("garden_area", "living_area")
     def _compute_total_area(self):
@@ -104,9 +103,7 @@ class EstateProperty(models.Model):
     @api.depends("best_offer")
     def _compute_best_offer_percentage(self):
         for property in self:
-            property.best_offer_percentage = (
-                (property.best_offer / property.expected_price) if property.best_offer else 0
-            )
+            property.best_offer_percentage = (property.best_offer / property.expected_price) if property.best_offer else 0
 
     @api.depends("offer_ids")
     def _compute_property_state(self):
@@ -132,6 +129,22 @@ class EstateProperty(models.Model):
                             "message": _("Availability shouldn't be in the past"),
                         }
                     }
+
+    @api.model
+    def create(self, vals):
+        properties = super(EstateProperty, self).create(vals)
+
+        estate_manager_group = self.env.ref("real_estate.estate_group_manager")
+        manager = self.env["res.users"].search([("groups_id", "in", estate_manager_group.ids)], limit=1)
+        for property in properties:
+            if manager:
+                property.activity_schedule(
+                    "mail.mail_activity_data_todo",
+                    summary="Follow up on new property listing",
+                    user_id=manager.id,
+                    date_deadline=fields.Date.context_today(property) + relativedelta(days=3),
+                )
+        return properties
 
     @api.model
     def _get_view(self, view_id=None, view_type="form", **options):

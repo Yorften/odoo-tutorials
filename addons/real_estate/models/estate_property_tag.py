@@ -8,6 +8,7 @@ class EstatePropertyTag(models.Model):
 
     name = fields.Char(string="Name", required=True)
     color = fields.Char(string="Color")
+    _order = "name"
 
     _sql_constraints = [
         (

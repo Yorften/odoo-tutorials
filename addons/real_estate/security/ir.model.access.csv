@@ -1,9 +1,9 @@
 "id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_estate_model_user","Estate Model User Access","model_estate_property","base.group_user","1","0","0","0"
-"access_estate_model_admin","Estate Model Admin Access","model_estate_property","real_estate.estate_admin","1","1","1","1"
-"access_estate_type_model_user","Estate Type Model User Access","model_estate_property_type","base.group_user","1","0","0","0"
-"access_estate_type_model_admin","Estate Type Model Admin Access","model_estate_property_type","real_estate.estate_admin","1","1","1","1"
-"access_estate_offer_model_user","Estate Offer Model User Access","model_estate_property_offer","base.group_user","1","0","0","0"
-"access_estate_offer_model_admin","Estate Offer Model Admin Access","model_estate_property_offer","real_estate.estate_admin","1","1","1","1"
-"access_estate_tag_model_user","Estate Tag Model User Access","model_estate_property_tag","base.group_user","1","0","0","0"
-"access_estate_tag_model_admin","Estate Tag Model Admin Access","model_estate_property_tag","real_estate.estate_admin","1","1","1","1"
+real_estate.access_estate_property_manager,access_estate_property_manager,real_estate.model_estate_property,estate_group_manager,1,1,1,0
+real_estate.access_estate_property_type_manager,access_estate_property_type_manager,real_estate.model_estate_property_type,estate_group_manager,1,1,1,1
+real_estate.access_estate_property_tag_manager,access_estate_property_tag_manager,real_estate.model_estate_property_tag,estate_group_manager,1,1,1,1
+real_estate.access_estate_property_offer_manager,access_estate_property_offer_manager,real_estate.model_estate_property_offer,estate_group_manager,1,1,1,1
+real_estate.access_estate_property_agent,access_estate_property_agent,real_estate.model_estate_property,estate_group_user,1,1,1,0
+real_estate.access_estate_property_type_agent,access_estate_property_type_agent,real_estate.model_estate_property_type,estate_group_user,1,0,0,0
+real_estate.access_estate_property_tag_agent,access_estate_property_tag_agent,real_estate.model_estate_property_tag,estate_group_user,1,0,0,0
+real_estate.access_estate_property_offer_agent,access_estate_property_offer_agent,real_estate.model_estate_property_offer,estate_group_user,1,1,1,0

@@ -2,7 +2,6 @@ from odoo import models, fields, api, _
 from odoo.tools.date_utils import relativedelta
 from odoo.exceptions import UserError
 
-from lxml import etree
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -10,7 +9,9 @@ _logger = logging.getLogger(__name__)
 
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Offers of Estate Property Model"
+    _order = "price desc"
 
     price = fields.Float(string="Price", required=True)
     status = fields.Selection(
@@ -86,7 +87,37 @@ class EstatePropertyOffer(models.Model):
         _logger.info("Creating offer with vals: %s", vals_list)
         for val in vals_list:
             self._check_property_state(val)
-        return super().create(vals_list)
+
+        offers = super().create(vals_list)
+
+        manager_group = self.env.ref("real_estate.estate_group_manager")
+        manager = self.env["res.users"].search([("groups_id", "in", manager_group.ids)], limit=1)
+
+        for offer in offers:
+            salesperson = offer.property_id.salesperson_id
+            if salesperson:
+                offer.activity_schedule(
+                    "mail.mail_activity_data_todo",
+                    summary=_("Follow up on new offer listing"),
+                    user_id=salesperson.id,
+                    date_deadline=fields.Date.context_today(offer) + relativedelta(days=3),
+                )
+                _logger.info("Activity scheduled for agent successfully")
+            else:
+                _logger.warning("No salesperson assigned for property %s", offer.property_id)
+
+            if manager:
+                offer.activity_schedule(
+                    "mail.mail_activity_data_todo",
+                    summary=_("Manager follow up on new offer listing"),
+                    user_id=manager.id,
+                    date_deadline=fields.Date.context_today(offer) + relativedelta(days=3),
+                )
+                _logger.info("Activity scheduled for manager successfully")
+            else:
+                _logger.warning("No manager found to notify for offer %s", offer.id)
+
+        return offers
 
     def write(self, vals):
         self.ensure_one()
