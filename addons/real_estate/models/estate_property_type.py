@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api, _
 from odoo.tools.date_utils import relativedelta
 
 
@@ -7,8 +7,10 @@ class EstatePropertyType(models.Model):
     _description = "Types of Estate Property Model"
 
     name = fields.Char(string="Name", required=True)
-    property_ids = fields.One2many("estate.property", "property_type_id", string="Properties")
+    property_ids = fields.One2many("estate.property", "property_type_id")
+    offer_ids = fields.One2many("estate.property.offer", "property_type_id")
     sequence = fields.Integer("Sequence", default=1, help="Used to order types. Lower is better.")
+    offer_count = fields.Integer(compute="_compute_total_offers")
 
     _sql_constraints = [
         (
@@ -17,3 +19,8 @@ class EstatePropertyType(models.Model):
             "A type with the same name already exists.",
         )
     ]
+
+    @api.depends("offer_ids")
+    def _compute_total_offers(self):
+        for rec in self:
+            rec.offer_count = len(rec.offer_ids)

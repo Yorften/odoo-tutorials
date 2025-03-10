@@ -24,6 +24,15 @@
                             <field name="name" />
                         </h1>
                     </group>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="real_estate.estate_property_offer_action"
+                            type="action"
+                            class="oe_stat_button"
+                            icon="fa-file-o"
+                            help="Total Offers for this Property Type">
+                            <field name="offer_count" widget="line_count" string="Offers" />
+                        </button>
+                    </div>
                     <notebook>
                         <page name="page_1" string="Properties">
                             <field name="property_ids">
