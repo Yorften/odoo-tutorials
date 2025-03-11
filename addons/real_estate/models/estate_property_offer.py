@@ -117,7 +117,8 @@ class EstatePropertyOffer(models.Model):
                 _logger.info("Activity scheduled for manager successfully")
             else:
                 _logger.warning("No manager found to notify for offer %s", offer.id)
-
+                
+            offer.action_send_email()
         return offers
 
     def write(self, vals):
@@ -135,12 +136,15 @@ class EstatePropertyOffer(models.Model):
                 raise UserError(_("You cannot delete an accepted offer."))
             return super(EstatePropertyOffer, self).unlink()
 
-
     def cron_auto_confirm_best_offer(self):
         today = date.today()
         expired_properties = self.env["estate.property"].search(
-            [("date_deadline", "<=", today), ("state", "=", "recieved"), ("offer_ids", "!=", False)]
+            [("date_availability", "<=", today), ("state", "=", "recieved"), ("offer_ids", "!=", False)]
         )
         for property in expired_properties:
             best_offer = property.offer_ids.filtered(lambda o: o.status != "refused").sorted("price", reverse=True)[:1]
             best_offer.action_accept()
+
+    def action_send_email(self):
+        mail_template = self.env.ref("real_estate.email_template_new_offer")
+        mail_template.send_mail(self.id, force_send=True)

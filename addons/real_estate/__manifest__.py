@@ -14,7 +14,7 @@
     "sequence": 1,
     "application": True,
     "installable": True,
-    "depends": ["base", "base_setup", "mail"],
+    "depends": ["base", "base_setup", "mail", "contacts"],
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",
@@ -25,6 +25,7 @@
         "views/user_views.xml",
         "views/estate_menu.xml",
         "data/cron.xml",
+        "data/mail_template_data.xml",
     ],
     "assets": {
         "web.assets_backend": [

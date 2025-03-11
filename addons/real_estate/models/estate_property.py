@@ -72,6 +72,8 @@ class EstateProperty(models.Model):
         default=lambda self: self.env.user,
     )
 
+    company_id = fields.Many2one("res.company", string="Company", default=lambda self: self.env.company, index=True)
+
     buyer_id = fields.Many2one(
         "res.partner",
         string="Buyer",
