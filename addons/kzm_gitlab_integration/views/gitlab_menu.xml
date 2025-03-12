@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem
+        id="gitlab_menu_root"
+        name="Gitlab"
+        web_icon="gitlab,static/description/icon.png"
+        sequence="30" />
+
+    <menuitem
+        id="gitlab_menu_instances"
+        name="Instances"
+        parent="gitlab_menu_root"
+        sequence="10" />
+
+    <menuitem
+        id="gitlab_menu_instances_list"
+        name="Instances"
+        parent="gitlab_menu_instances"
+        sequence="10" />
+
+    <menuitem
+        id="gitlab_menu_Configuration"
+        name="Configuration"
+        parent="gitlab_menu_instances"
+        sequence="10" />
+
+
+</odoo>

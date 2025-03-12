@@ -1,7 +1,7 @@
 {
-  "python.languageServer": "None",
   "emmet.includeLanguages": {
     "xml": "html"
   },
-  "black-formatter.args": ["--line-length", "129"]
+  "black-formatter.args": ["--line-length", "129"],
+  "python.languageServer": "None"
 }
