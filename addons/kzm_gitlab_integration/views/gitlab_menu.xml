@@ -17,13 +17,33 @@
         id="gitlab_menu_instances_list"
         name="Instances"
         parent="gitlab_menu_instances"
+        action="project_database_action"
         sequence="10" />
 
     <menuitem
-        id="gitlab_menu_Configuration"
+        id="gitlab_menu_configuration"
         name="Configuration"
-        parent="gitlab_menu_instances"
+        parent="gitlab_menu_root"
         sequence="10" />
 
+    <menuitem
+        id="gitlab_menu_odoo_version"
+        name="Odoo Versions"
+        parent="gitlab_menu_configuration"
+        action="odoo_version_action"
+        sequence="10" />
 
+    <menuitem
+        id="gitlab_menu_gitlab_members"
+        name="Gitlab Members"
+        parent="gitlab_menu_configuration"
+        action="project_member_action"
+        sequence="10" />
+
+    <menuitem
+        id="gitlab_menu_gitlab_credentials"
+        name="Gitlab Credentials"
+        parent="gitlab_menu_configuration"
+        action="github_credential_action"
+        sequence="10" />
 </odoo>

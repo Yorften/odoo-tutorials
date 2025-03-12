@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_member_action" model="ir.actions.act_window">
+        <field name="name">View Projects</field>
+        <field name="res_model">project.member</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record id="project_member_view_list" model="ir.ui.view">
+        <field name="name">project.member.view.list</field>
+        <field name="model">project.member</field>
+        <field name="arch" type="xml">
+            <list>
+
+            </list>
+        </field>
+    </record>
+
+</odoo>
