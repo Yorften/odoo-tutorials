@@ -34,5 +34,5 @@ class FernetUtils:
 
     @classmethod
     def get_decrypted_token(cls, access_token: bytes):
-        _logger.info("get_decrypted_token: %s", access_token)
+        _logger.info("Encrypted token: %s", access_token)
         return cls.get_fernet().decrypt(access_token)

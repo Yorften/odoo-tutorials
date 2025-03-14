@@ -19,9 +19,9 @@
         "security/res_groups.xml",
         "security/ir.model.access.csv",
         "views/gitlab_credential_views.xml",
-        "views/odoo_version_views.xml",
         "views/project_database_views.xml",
         "views/project_member_views.xml",
+        "views/odoo_version_views.xml",
         "views/gitlab_menu.xml",
     ],
     "assets": {

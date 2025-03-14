@@ -55,24 +55,22 @@ class GitlabCredential(models.Model):
 
         return res
 
-    def action_verify_credentials(self):
-        return True
-
     def _deactivate_other_tokens(self):
-        """
-        For each record in self marked as active,
-        set active=False and state='inactive' on all other tokens for the same user.
-        """
         for rec in self:
             other_tokens = self.search([("user_id", "=", rec.user_id.id), ("id", "!=", rec.id), ("active_token", "=", True)])
             if other_tokens:
                 other_tokens.write({"active_token": False, "state": "inactive"})
 
+    def action_mark_as_active(self):
+        self.ensure_one()
+        self._deactivate_other_tokens()
+        self.active_token = True
+        self.state = "active"
+
     def action_verify_credentials(self):
         self.ensure_one()
         try:
             GitlabClient._get_gitlab_client(self.access_token)
-            self.state = "active"
             return {
                 "type": "ir.actions.client",
                 "tag": "display_notification",
@@ -84,13 +82,12 @@ class GitlabCredential(models.Model):
                 },
             }
         except GitlabAuthenticationError as e:
-            self.state = "inactive"
             return {
                 "type": "ir.actions.client",
                 "tag": "display_notification",
                 "params": {
                     "title": _("Authentication failed"),
-                    "type": "error",
+                    "type": "danger",
                     "message": _("Authentication failed: %s", e.error_message),
                     "sticky": True,
                 },

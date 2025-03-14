@@ -1,5 +1,4 @@
 from odoo import models, fields
-from odoo.tools.date_utils import relativedelta
 
 
 class EstatePropertyTag(models.Model):

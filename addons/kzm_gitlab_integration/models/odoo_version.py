@@ -1,22 +1,25 @@
-from odoo import _, api, fields, models
+from odoo import models, fields
 
 
 class OdooVerison(models.Model):
     _name = "odoo.version"
     _description = "Odoo version tags"
-    _order = "sequence"
-    
-    version = fields.Char(string="Version", required=True)
-    color = fields.Char(string="Color")
-    _order = "version"
+
+    name = fields.Char(string="Version", required=True)
+    color = fields.Char(
+        string="Color Index",
+        default=lambda self: self._default_color(),
+        help="Tag color. No color means no display in kanban or front-end, to distinguish internal tags from public categorization tags.",
+    )
+    _order = "name"
 
     _sql_constraints = [
         (
-            "unique_version",
-            "unique(version)",
-            "A version with the same name already exists.",
+            "name_unique",
+            "unique(name)",
+            "A name with the same name already exists.",
         )
     ]
 
-    # Relational Fields
-    project_ids = fields.One2many('gitlab.project', 'odoo_version_id')
+    def _default_color(self):
+        return "#FFFFFF"
