@@ -7,4 +7,14 @@
             <field name="name">Gitlab</field>
         </record>
     </data>
+
+    <!-- Record rule: Only show GitLab credentials belonging to the current user -->
+    <data noupdate="1">
+        <record id="gitlab_credential_rule_user" model="ir.rule">
+            <field name="name">GitLab Credential: Only own</field>
+            <field name="model_id" ref="kzm_gitlab_integration.model_gitlab_credential" />
+            <field name="domain_force">[('user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('gitlab_group_user'))]" />
+        </record>
+    </data>
 </odoo>

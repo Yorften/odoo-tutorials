@@ -1,6 +1,8 @@
 services:
   web:
-    image: odoo:18.0
+    build:
+      context: .
+      dockerfile: Dockerfile
     depends_on:
       - db
     ports:
@@ -11,8 +13,10 @@ services:
       - ./addons:/mnt/extra-addons
     environment:
       - PASSWORD_FILE=/run/secrets/postgresql_password
+      - GITLAB_CREDENTIALS_KEY=/run/secrets/gitlab_credentials_key
     secrets:
       - postgresql_password
+      - gitlab_credentials_key
 
   db:
     image: postgres:latest
@@ -33,3 +37,5 @@ volumes:
 secrets:
   postgresql_password:
     file: odoo_pg_pass
+  gitlab_credentials_key:
+    file: gitlab_credentials_key

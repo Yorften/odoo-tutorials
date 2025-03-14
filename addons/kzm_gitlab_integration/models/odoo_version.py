@@ -19,4 +19,4 @@ class OdooVerison(models.Model):
     ]
 
     # Relational Fields
-    project_ids = fields.One2many('project.database', 'odoo_version_id')
+    project_ids = fields.One2many('gitlab.project', 'odoo_version_id')

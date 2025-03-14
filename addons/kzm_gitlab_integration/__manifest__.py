@@ -27,6 +27,9 @@
     "assets": {
         "web.assets_backend": [],
     },
+    "external_dependencies": {
+        "python": ["gitlab"],
+    },
     "demo": [],
     "license": "AGPL-3",
 }

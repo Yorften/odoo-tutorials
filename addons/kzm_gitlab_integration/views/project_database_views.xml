@@ -2,30 +2,75 @@
 <odoo>
 
     <record id="project_database_action" model="ir.actions.act_window">
-        <field name="name">View Projects</field>
-        <field name="res_model">project.database</field>
+        <field name="name">GitLab Projects</field>
+        <field name="res_model">gitlab.project</field>
         <field name="view_mode">list,form</field>
     </record>
 
     <record id="project_database_view_list" model="ir.ui.view">
-        <field name="name">project.database.view.list</field>
-        <field name="model">project.database</field>
+        <field name="name">gitlab.project.view.list</field>
+        <field name="model">gitlab.project</field>
         <field name="arch" type="xml">
-            <list>
-
+            <list string="GitLab Projects">
+                <field name="name" />
+                <field name="position" />
+                <field name="pipeline_status" />
+                <field name="code_score" />
+                <field name="branches" />
             </list>
         </field>
     </record>
 
-    <record id="project_database_view_form" model="ir.ui.view">
-        <field name="name">project.database.view.form</field>
-        <field name="model">project.database</field>
-        <field name="arch" type="xml">
-            <form>
-                <sheet>
-                    <group>
 
+    <record id="project_database_view_form" model="ir.ui.view">
+        <field name="name">gitlab.project.view.form</field>
+        <field name="model">gitlab.project</field>
+        <field name="arch" type="xml">
+            <form string="GitLab Project">
+                <sheet>
+                    <header>
+                        <button type="object" name="action_sync_project" string="Sync" />
+                        <field name="pipeline_status" widget="statusbar" statusbar_visible="success,fail" />
+                    </header>
+                    <group>
+                        <h1>
+                            <p>Project Name :</p>
+                            <field name="project_name" />
+                        </h1>
                     </group>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1" />
+                            <field name="link" readonly="1" />
+                            <field name="git_link" readonly="1" />
+                            <field name="position" readonly="1" />
+                            <field name="client_id" readonly="1" />
+                            <field name="odoo_version_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="GitLab Info">
+                            <group>
+                                <field name="group" readonly="1" />
+                                <field name="default_branch" readonly="1" />
+                                <field name="branches" readonly="1" />
+                                <field name="code_score" readonly="1" />
+                                <field name="last_merge" readonly="1" />
+                            </group>
+                        </page>
+
+                        <page string="Project Members">
+                            <field name="project_members_ids" widget="many2many_tags"
+                                readonly="1"
+                                placeholder="No members assigned." />
+                        </page>
+
+                        <page string="Description">
+                            <group>
+                                <field name="description" readonly="1"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

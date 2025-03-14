@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="odoo_version_action" model="ir.actions.act_window">
-        <field name="name">View Projects</field>
+        <field name="name">Odoo Versions</field>
         <field name="res_model">odoo.version</field>
         <field name="view_mode">list,form</field>
     </record>
@@ -12,7 +12,7 @@
         <field name="model">odoo.version</field>
         <field name="arch" type="xml">
             <list>
-
+                <field name="version" />
             </list>
         </field>
     </record>
@@ -24,7 +24,11 @@
             <form>
                 <sheet>
                     <group>
-
+                        <h1>
+                            <p>Version Name :</p>
+                            <field name="version" />
+                        </h1>
+                        <field name="color" widget="color" />
                     </group>
                 </sheet>
             </form>
