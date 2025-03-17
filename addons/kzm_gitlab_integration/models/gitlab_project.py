@@ -1,5 +1,7 @@
 from odoo import _, api, fields, models
 from ..service import GitlabClient
+from gitlab.base import RESTObject, RESTObjectList
+from typing import List
 
 from pprint import pformat
 import logging
@@ -11,7 +13,7 @@ class GitlabProject(models.Model):
     _name = "gitlab.project"
     _description = "Gitlab projects database"
 
-    id = fields.Integer("Id")
+    project_id = fields.Integer("Id")
     name = fields.Char("Name")
     link = fields.Char("Link")
     git_link = fields.Char("Git Link")
@@ -27,6 +29,14 @@ class GitlabProject(models.Model):
     code_score = fields.Float("Code Score")
     last_merge = fields.Char("Last Merge request")
 
+    _sql_constraints = [
+        (
+            "unique_project_id",
+            "unique(project_id)",
+            "A Project with the same id already exists.",
+        )
+    ]
+
     # Relational Fields
     odoo_version_id = fields.Many2one("odoo.version", string="Version")
     project_members_ids = fields.Many2many("gitlab.member", string="Project Members")
@@ -34,46 +44,6 @@ class GitlabProject(models.Model):
     def get_active_credentials(self):
         active_credential = self.env["gitlab.credential"].search([("active_token", "=", True)], limit=1)
         return active_credential.access_token if active_credential else None
-
-    # def _sync_project_with_gitlab(self):
-    #     token = self.get_active_credentials()
-    #     if not token:
-    #         _logger.warning("No active GitLab credential found.")
-    #         return
-
-    #     try:
-    #         _logger.info("token %s", token)
-    #         client = GitlabClient._get_gitlab_client(token)
-    #         current_user = client.user
-    #         user = client.users.get(current_user.id)
-    #         projects = user.projects.list(iterator=True)
-    #         # _logger.info("Project names: %s", pformat([project.attributes for project in projects]))
-    #         _logger.info("Project names: %s", projects)
-
-    #         for project in projects:
-    #             git_link = project.attributes.get("http_url_to_repo")  # git link
-    #             existing = self.search([("git_link", "=", git_link)], limit=1)
-    #             project_branches = len(client.projects.get(project.attributes.get("id")).branches.list())
-    #             _logger.info("Project names: %s", project.attributes)
-    #             _logger.info("Project branches %d", project_branches)
-    #             vals = {
-    #                 "id": project.attributes.get("id"),
-    #                 "name": project.attributes.get("name"),
-    #                 "description": project.attributes.get("description") or "",
-    #                 "link": project.attributes.get("web_url") or "",
-    #                 "git_link": project.attributes.get("http_url_to_repo") or "",
-    #                 "branches": project_branches,
-    #                 "default_branch": project.attributes.get("default_branch") or "",
-    #                 # "group": project.attributes.get() or "",
-    #                 # "default_branch": project.attributes.get() or "",
-    #                 # "last_merge": project.attributes.get() or "",
-    #             }
-    #             if existing:
-    #                 existing.write(vals)
-    #             else:
-    #                 self.create(vals)
-    #     except Exception as e:
-    #         _logger.exception("Exception while syncing projects from GitLab: %s", e)
 
     def action_sync_project(self):
         _logger.info("Project names: %s", self.project_name)
@@ -83,5 +53,36 @@ class GitlabProject(models.Model):
             return
         client = GitlabClient._get_gitlab_client(token)
         project = client.projects.get(self.project_name)
-        _logger.info("Project names: %s", pformat(project.attributes))
+        project_branches = len(project.branches.list())
+        project_members = project.members.list()
+        self.project_id = project.attributes.get("id")
+        self.name = project.attributes.get("name")
+        self.description = project.attributes.get("description")
+        self.link = project.attributes.get("web_url")
+        self.git_link = project.attributes.get("http_url_to_repo")
+        self.branches = project_branches
+        self.default_branch = project.attributes.get("default_branch")
+        self.group = project.attributes.get("namespace").get("kind")
+        self.sync_project_members(project_members)
+        # self.last_merge = project.attributes.get()
+
+        # _logger.info("Project branches %d", project_branches)
+        _logger.info("Project merge reauests %s", pformat([req.attributes for req in project.mergerequests.list()]))
         return True
+
+    def sync_project_members(self, gitlab_members: RESTObjectList | List[RESTObject]):
+        MemberModel = self.env["gitlab.member"]
+        member_ids = []
+        for member in gitlab_members:
+            member_id = member.attributes.get("id")
+            existing_member = MemberModel.search([("member_id", "=", member_id)], limit=1)
+            if not existing_member:
+                existing_member = MemberModel.create(
+                    {
+                        "member_id": member_id,
+                        "name": member.attributes.get("name"),
+                    }
+                )
+            member_ids.append(existing_member.id)
+
+        self.write({"project_members_ids": [(6, 0, member_ids)]})

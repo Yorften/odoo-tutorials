@@ -25,7 +25,10 @@
         "views/gitlab_menu.xml",
     ],
     "assets": {
-        "web.assets_backend": [],
+        "web.assets_backend": [
+            "kzm_gitlab_integration/static/src/xml/clipboard_url_field.xml",
+            "kzm_gitlab_integration/static/src/js/clipboard_widget.js",
+        ],
     },
     "external_dependencies": {
         "python": ["gitlab"],

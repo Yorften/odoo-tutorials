@@ -2,4 +2,4 @@
 kzm_gitlab_integration.access_gitlab_credential,access_gitlab_credential,kzm_gitlab_integration.model_gitlab_credential,gitlab_group_user,1,1,1,1
 kzm_gitlab_integration.access_project_database,access_project_database,kzm_gitlab_integration.model_gitlab_project,base.group_user,1,1,1,1
 kzm_gitlab_integration.access_odoo_version,access_odoo_version,kzm_gitlab_integration.model_odoo_version,base.group_user,1,1,1,1
-kzm_gitlab_integration.access_project_member,access_project_member,kzm_gitlab_integration.model_gitlab_member,base.group_user,1,0,0,0
+kzm_gitlab_integration.access_project_member,access_project_member,kzm_gitlab_integration.model_gitlab_member,base.group_user,1,1,1,0
