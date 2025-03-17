@@ -61,12 +61,9 @@ export class ClipboardUrlField extends Component {
       textarea.select();
       try {
         document.execCommand("copy");
-        this.notificationService.add(
-          _t("You cannot delete an accepted offer."),
-          {
-            type: "success",
-          }
-        );
+        this.notificationService.add(_t("Url copied to clipboard"), {
+          type: "success",
+        });
       } catch (err) {
         this.notificationService.add(_t("Failed to copy url to clipboard"), {
           type: "danger",

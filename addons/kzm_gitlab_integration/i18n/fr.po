@@ -1,0 +1,414 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* kzm_gitlab_integration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20250218\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-17 14:17+0000\n"
+"PO-Revision-Date: 2025-03-17 14:17+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.gitlab_credential_view_kanban
+msgid "<span class=\"badge text-bg-success\">Active</span>"
+msgstr "<span class=\"badge text-bg-success\">Actif</span>"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.gitlab_credential_view_kanban
+msgid "<strong>Token Validity: </strong>"
+msgstr "<strong>Validité du jeton : </strong>"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.constraint,message:kzm_gitlab_integration.constraint_gitlab_member_unique_member_id
+msgid "A Member with the same id already exists."
+msgstr "Un membre avec le même identifiant existe déjà."
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.constraint,message:kzm_gitlab_integration.constraint_gitlab_project_unique_project_id
+msgid "A Project with the same id already exists."
+msgstr "Un projet avec le même identifiant existe déjà."
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.constraint,message:kzm_gitlab_integration.constraint_odoo_version_name_unique
+msgid "A name with the same name already exists."
+msgstr "Un nom identique existe déjà."
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.constraint,message:kzm_gitlab_integration.constraint_gitlab_credential_unique_token_name
+msgid "A token with the same name already exists."
+msgstr "Un jeton portant le même nom existe déjà."
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__access_token
+msgid "Access Token"
+msgstr "Jeton d'accès"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields.selection,name:kzm_gitlab_integration.selection__gitlab_credential__state__active
+msgid "Active"
+msgstr "Actif"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__active_token
+msgid "Active Token"
+msgstr "Jeton actif"
+
+#. module: kzm_gitlab_integration
+#. odoo-python
+#: code:addons/kzm_gitlab_integration/models/gitlab_credential.py:0
+msgid "Authentication failed"
+msgstr "Échec de l'authentification"
+
+#. module: kzm_gitlab_integration
+#. odoo-python
+#: code:addons/kzm_gitlab_integration/models/gitlab_credential.py:0
+msgid "Authentication failed: %s"
+msgstr "Échec de l'authentification : %s"
+
+#. module: kzm_gitlab_integration
+#. odoo-python
+#: code:addons/kzm_gitlab_integration/models/gitlab_credential.py:0
+msgid "Authentication succeed!"
+msgstr "Authentification réussie !"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__branches
+msgid "Branches"
+msgstr "Branches"
+
+#. module: kzm_gitlab_integration
+#. odoo-javascript
+#: code:addons/kzm_gitlab_integration/static/src/js/clipboard_widget.js:0
+msgid "Clipboard URL"
+msgstr "URL du presse-papiers"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__code_score
+msgid "Code Score"
+msgstr "Score de code"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_odoo_version__color
+msgid "Color Index"
+msgstr "Indice de couleur"
+
+#. module: kzm_gitlab_integration
+#: model:ir.ui.menu,name:kzm_gitlab_integration.gitlab_menu_configuration
+msgid "Configuration"
+msgstr "Configuration"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__create_uid
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_member__create_uid
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__create_uid
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_odoo_version__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__create_date
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_member__create_date
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__create_date
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_odoo_version__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_res_users__credential_ids
+msgid "Credential"
+msgstr "Identifiant"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__default_branch
+msgid "Default Branch"
+msgstr "Branche par défaut"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__description
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.project_database_view_form
+msgid "Description"
+msgstr "Description"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__display_name
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_member__display_name
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__display_name
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_odoo_version__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields.selection,name:kzm_gitlab_integration.selection__gitlab_project__pipeline_status__fail
+msgid "Failed"
+msgstr "Échoué"
+
+#. module: kzm_gitlab_integration
+#. odoo-javascript
+#: code:addons/kzm_gitlab_integration/static/src/js/clipboard_widget.js:0
+msgid "Failed to copy url to clipboard"
+msgstr "Échec de la copie de l'URL dans le presse-papiers"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__git_link
+msgid "Git Link"
+msgstr "Lien Git"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.project_database_view_form
+msgid "GitLab Info"
+msgstr "Informations GitLab"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.project_database_view_form
+msgid "GitLab Project"
+msgstr "Projet GitLab"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.project_database_view_list
+msgid "GitLab Projects"
+msgstr "Projets GitLab"
+
+#. module: kzm_gitlab_integration
+#: model:ir.ui.menu,name:kzm_gitlab_integration.gitlab_menu_root
+#: model:res.groups,name:kzm_gitlab_integration.gitlab_group_user
+msgid "Gitlab"
+msgstr "GitLab"
+
+#. module: kzm_gitlab_integration
+#: model:ir.actions.act_window,name:kzm_gitlab_integration.github_credential_action
+#: model:ir.ui.menu,name:kzm_gitlab_integration.gitlab_menu_gitlab_credentials
+msgid "Gitlab Credentials"
+msgstr "Crédentiels GitLab"
+
+#. module: kzm_gitlab_integration
+#: model:ir.ui.menu,name:kzm_gitlab_integration.gitlab_menu_gitlab_members
+msgid "Gitlab Members"
+msgstr "Membres GitLab"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model,name:kzm_gitlab_integration.model_gitlab_credential
+msgid "Gitlab credentials for private repositories"
+msgstr "Crédentiels GitLab pour les dépôts privés"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model,name:kzm_gitlab_integration.model_gitlab_member
+msgid "Gitlab project members"
+msgstr "Membres de projets GitLab"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model,name:kzm_gitlab_integration.model_gitlab_project
+msgid "Gitlab projects database"
+msgstr "Base de données des projets GitLab"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__group
+msgid "Group"
+msgstr "Groupe"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__id
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_member__id
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__id
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_odoo_version__id
+msgid "ID"
+msgstr "ID"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_member__member_id
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__project_id
+msgid "Id"
+msgstr "ID"
+
+#. module: kzm_gitlab_integration
+#. odoo-javascript
+#: code:addons/kzm_gitlab_integration/static/src/js/clipboard_widget.js:0
+msgid "If True, the url will be used as it is, without any prefix added to it."
+msgstr "Si vrai, l'URL sera utilisée telle quelle, sans aucun préfixe ajouté."
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields.selection,name:kzm_gitlab_integration.selection__gitlab_credential__state__inactive
+msgid "Inactive"
+msgstr "Inactif"
+
+#. module: kzm_gitlab_integration
+#: model:ir.ui.menu,name:kzm_gitlab_integration.gitlab_menu_instances
+#: model:ir.ui.menu,name:kzm_gitlab_integration.gitlab_menu_instances_list
+msgid "Instances"
+msgstr "Instances"
+
+#. module: kzm_gitlab_integration
+#. odoo-javascript
+#: code:addons/kzm_gitlab_integration/static/src/js/clipboard_widget.js:0
+msgid "Is a website path"
+msgstr "Est un chemin de site web"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__last_merge_link
+msgid "Last Merge"
+msgstr "Dernière fusion"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__last_merge_url
+msgid "Last Merge URL"
+msgstr "URL de la dernière fusion"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__last_merge
+msgid "Last Merge request"
+msgstr "Dernière demande de fusion"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__write_uid
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_member__write_uid
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__write_uid
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_odoo_version__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__write_date
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_member__write_date
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__write_date
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_odoo_version__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__link
+msgid "Link"
+msgstr "Lien"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.gitlab_credential_view_form
+msgid "Mark as active"
+msgstr "Marquer comme actif"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_member__name
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.project_database_view_form
+msgid "No members assigned."
+msgstr "Aucun membre assigné."
+
+#. module: kzm_gitlab_integration
+#: model:ir.actions.act_window,name:kzm_gitlab_integration.odoo_version_action
+#: model:ir.ui.menu,name:kzm_gitlab_integration.gitlab_menu_odoo_version
+msgid "Odoo Versions"
+msgstr "Versions Odoo"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model,name:kzm_gitlab_integration.model_odoo_version
+msgid "Odoo version tags"
+msgstr "Tags de version Odoo"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields.selection,name:kzm_gitlab_integration.selection__gitlab_project__position__pre_prod
+msgid "PRE PROD"
+msgstr "PRÉ-PROD"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields.selection,name:kzm_gitlab_integration.selection__gitlab_project__position__prod
+msgid "PROD"
+msgstr "PROD"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__pipeline_status
+msgid "Pipeline Status"
+msgstr "Statut du pipeline"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__position
+msgid "Position"
+msgstr "Position"
+
+#. module: kzm_gitlab_integration
+#: model:ir.actions.act_window,name:kzm_gitlab_integration.project_member_action
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__project_members_ids
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.project_database_view_form
+msgid "Project Members"
+msgstr "Membres du projet"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__project_name
+msgid "Project Name"
+msgstr "Nom du projet"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.project_database_view_form
+msgid "Project Name :"
+msgstr "Nom du projet :"
+
+#. module: kzm_gitlab_integration
+#: model:ir.actions.act_window,name:kzm_gitlab_integration.project_database_action
+msgid "Projects"
+msgstr "Projets"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__state
+msgid "Status"
+msgstr "Statut"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields.selection,name:kzm_gitlab_integration.selection__gitlab_project__pipeline_status__success
+msgid "Succeed"
+msgstr "Réussi"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.project_database_view_form
+msgid "Sync"
+msgstr "Synchroniser"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields.selection,name:kzm_gitlab_integration.selection__gitlab_project__position__test
+msgid "TEST"
+msgstr "TEST"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,help:kzm_gitlab_integration.field_odoo_version__color
+msgid "Tag color. No color means no display in kanban or front-end, to distinguish internal tags from public categorization tags."
+msgstr "Couleur de l'étiquette. L'absence de couleur signifie qu'elle ne sera pas affichée dans le kanban ou sur le front-end, afin de distinguer les étiquettes internes des étiquettes de catégorisation publique."
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__token_name
+msgid "Token Name"
+msgstr "Nom du jeton"
+
+#. module: kzm_gitlab_integration
+#. odoo-javascript
+#: code:addons/kzm_gitlab_integration/static/src/js/clipboard_widget.js:0
+msgid "Url copied to clipboard"
+msgstr "URL copiée dans le presse-papiers"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model,name:kzm_gitlab_integration.model_res_users
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_credential__user_id
+msgid "User"
+msgstr "Utilisateur"
+
+#. module: kzm_gitlab_integration
+#. odoo-python
+#: code:addons/kzm_gitlab_integration/models/gitlab_credential.py:0
+msgid "Verification success"
+msgstr "Vérification réussie"
+
+#. module: kzm_gitlab_integration
+#: model_terms:ir.ui.view,arch_db:kzm_gitlab_integration.gitlab_credential_view_form
+msgid "Verify"
+msgstr "Vérifier"
+
+#. module: kzm_gitlab_integration
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_gitlab_project__odoo_version_id
+#: model:ir.model.fields,field_description:kzm_gitlab_integration.field_odoo_version__name
+msgid "Version"
+msgstr "Version"

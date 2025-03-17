@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="gitlab_project_report_action" model="ir.actions.report">
+            <field name="name">print project report</field>
+            <field name="model">gitlab.project</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">kzm_gitlab_integration.gitlab_project_report</field>
+            <field name="report_file">kzm_gitlab_integration.gitlab_project_report</field>
+            <field name="print_report_name">'Project - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="kzm_gitlab_integration.model_gitlab_project" />
+        </record>
+    </data>
+</odoo>

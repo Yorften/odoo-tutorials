@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="gitlab_project_report">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <main>
+                        <t t-foreach="docs" t-as="doc">
+                            <h2 class="text-center">Project Report: <span t-esc="doc.name" /></h2>
+                            <hr />
+                            <table class="table table-bordered" style="width: 100%; margin-top: 20px;">
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 30%;">Project ID</th>
+                                        <td>
+                                            <span t-field="doc.project_id" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Name</th>
+                                        <td>
+                                            <span t-field="doc.name" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Project Name</th>
+                                        <td>
+                                            <span t-field="doc.project_name" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Link</th>
+                                        <td>
+                                            <a t-att-href="doc.link" target="_blank">
+                                                <span t-field="doc.link" />
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Position</th>
+                                        <td>
+                                            <span t-field="doc.position" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Branches</th>
+                                        <td>
+                                            <span t-field="doc.branches" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Group</th>
+                                        <td>
+                                            <span t-field="doc.group" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td>
+                                            <span t-field="doc.description" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Default Branch</th>
+                                        <td>
+                                            <span t-field="doc.default_branch" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pipeline Status</th>
+                                        <td>
+                                            <span t-field="doc.pipeline_status" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Code Score</th>
+                                        <td>
+                                            <span t-field="doc.code_score" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Last Merge Request</th>
+                                        <td t-raw="doc.last_merge_link" />
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                    </main>
+                </div>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

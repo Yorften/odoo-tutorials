@@ -18,6 +18,8 @@
     "data": [
         "security/res_groups.xml",
         "security/ir.model.access.csv",
+        "report/kzm_gitlab_reports.xml",
+        "report/kzm_gitlab_templates.xml",
         "views/gitlab_credential_views.xml",
         "views/project_member_views.xml",
         "views/odoo_version_views.xml",

@@ -31,6 +31,8 @@
                 <sheet>
                     <header>
                         <button type="object" name="action_sync_project" string="Sync" />
+                        <button type="action" name="%(kzm_gitlab_integration.gitlab_project_report_action)d" string="Download Report" class="oe_highlight"
+                            icon="fa-download" />
                         <field name="position" widget="statusbar" options="{'clickable':1}" />
                     </header>
                     <group>
