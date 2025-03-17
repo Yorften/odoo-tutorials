@@ -25,6 +25,7 @@
         "views/odoo_version_views.xml",
         "views/project_database_views.xml",
         "views/gitlab_menu.xml",
+        "wizard/report_wizard_view.xml",
     ],
     "assets": {
         "web.assets_backend": [

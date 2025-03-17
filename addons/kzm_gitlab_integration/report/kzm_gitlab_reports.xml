@@ -10,4 +10,5 @@
             <field name="binding_model_id" ref="kzm_gitlab_integration.model_gitlab_project" />
         </record>
     </data>
+
 </odoo>
