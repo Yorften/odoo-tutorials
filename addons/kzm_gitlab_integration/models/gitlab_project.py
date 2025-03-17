@@ -28,7 +28,11 @@ class GitlabProject(models.Model):
     pipeline_status = fields.Selection([("success", "Succeed"), ("fail", "Failed")], string="Pipeline Status")
     code_score = fields.Float("Code Score")
     last_merge = fields.Char("Last Merge request")
+    last_merge_url = fields.Char("Last Merge URL")
 
+    last_merge_link = fields.Html(
+        string="Last Merge", compute="_compute_last_merge_link", sanitize=False, store=False  # allow HTML markup
+    )
     _sql_constraints = [
         (
             "unique_project_id",
@@ -40,6 +44,14 @@ class GitlabProject(models.Model):
     # Relational Fields
     odoo_version_id = fields.Many2one("odoo.version", string="Version")
     project_members_ids = fields.Many2many("gitlab.member", string="Project Members")
+
+    @api.depends("last_merge", "last_merge_url")
+    def _compute_last_merge_link(self):
+        for record in self:
+            if record.last_merge and record.last_merge_url:
+                record.last_merge_link = f'<a href="{record.last_merge_url}" target="_blank">{record.last_merge}</a>'
+            else:
+                record.last_merge_link = f'<p target="_blank">None</p>'
 
     def get_active_credentials(self):
         active_credential = self.env["gitlab.credential"].search([("active_token", "=", True)], limit=1)
@@ -64,10 +76,17 @@ class GitlabProject(models.Model):
         self.default_branch = project.attributes.get("default_branch")
         self.group = project.attributes.get("namespace").get("kind")
         self.sync_project_members(project_members)
-        # self.last_merge = project.attributes.get()
+
+        # Get the project merge requests
+        merge_requests = project.mergerequests.list(order_by="updated_at", sort="desc")
+        if merge_requests:
+            self.last_merge = merge_requests[0].attributes.get("title")
+            self.last_merge_url = merge_requests[0].attributes.get("web_url")
+        else:
+            self.last_merge = None
 
         # _logger.info("Project branches %d", project_branches)
-        _logger.info("Project merge reauests %s", pformat([req.attributes for req in project.mergerequests.list()]))
+        # _logger.info("Project merge reauests %s", pformat([req.attributes for req in project.mergerequests.list(order_by='updated_at', sort="desc")]))
         return True
 
     def sync_project_members(self, gitlab_members: RESTObjectList | List[RESTObject]):

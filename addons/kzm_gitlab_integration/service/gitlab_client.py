@@ -20,7 +20,7 @@ class GitlabClient:
 
     def _initialize_client(self):
         self.client = gitlab.Gitlab(private_token=self.private_token, timeout=self.timeout, per_page=10)
-        _logger.info("Decrypted token: %s", self.private_token)
+        # _logger.info("Decrypted token: %s", self.private_token)
         self.client.auth()
 
     def get_client(self):

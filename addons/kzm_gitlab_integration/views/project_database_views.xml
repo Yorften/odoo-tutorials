@@ -54,7 +54,7 @@
                                 <field name="default_branch" readonly="True" />
                                 <field name="branches" readonly="True" />
                                 <field name="code_score" readonly="True" />
-                                <field name="last_merge" readonly="True" />
+                                <field name="last_merge_link" readonly="True" widget="html" />
                             </group>
                         </page>
 

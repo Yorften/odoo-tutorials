@@ -37,7 +37,6 @@ class GitlabCredential(models.Model):
             # Encrypting the token first
             if "access_token" in vals:
                 vals["access_token"] = FernetUtils.get_fernet().encrypt(self.encode_token(vals["access_token"]))
-                _logger.info("Encrypted token: %s", vals["access_token"])
         records = super(GitlabCredential, self).create(vals_list)
         for record in records:
             if record.active_token:
@@ -48,7 +47,6 @@ class GitlabCredential(models.Model):
         # Encrypting the token first
         if "access_token" in vals and vals["access_token"]:
             vals["access_token"] = FernetUtils.get_fernet().encrypt(self.encode_token(vals["access_token"]))
-            _logger.info("Encrypted token: %s", vals["access_token"])
         res = super(GitlabCredential, self).write(vals)
         if "active_token" in vals:
             self._deactivate_other_tokens()
