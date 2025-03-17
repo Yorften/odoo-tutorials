@@ -2,9 +2,10 @@ from odoo import _, api, fields, models
 from ..service import GitlabClient
 from gitlab.base import RESTObject, RESTObjectList
 from typing import List
-
 from pprint import pformat
+
 import logging
+import re
 
 _logger = logging.getLogger(__name__)
 
@@ -86,8 +87,26 @@ class GitlabProject(models.Model):
             self.last_merge = None
 
         # _logger.info("Project branches %d", project_branches)
-        # _logger.info("Project merge reauests %s", pformat([req.attributes for req in project.mergerequests.list(order_by='updated_at', sort="desc")]))
-        return True
+        jobs = project.jobs.list(order_by="created_at", sort="desc")
+        last_job = jobs[0] if jobs else None
+
+        if last_job:
+            if last_job.attributes.get("pipeline").get("status") == "success":
+                self.pipeline_status = "success"
+
+                log = project.jobs.get(last_job.attributes.get("id")).artifact("pylint_output.log", streamed=False, iterator=False)
+                log_text = log.decode("utf-8")
+
+                m = re.search(r"Your code has been rated at (\d+\.\d+)/10", log_text)
+                if m:
+                    score = m.group(1)
+                    self.code_score = score
+                else:
+                    _logger.info("Pylint score not found in log")
+            else:
+                self.pipeline_status = "fail"
+        # _logger.info("Project last job %s", last_job.attributes)
+        # _logger.info("Project report %s", log_text)
 
     def sync_project_members(self, gitlab_members: RESTObjectList | List[RESTObject]):
         MemberModel = self.env["gitlab.member"]

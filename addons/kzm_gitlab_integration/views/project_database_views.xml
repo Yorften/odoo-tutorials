@@ -14,7 +14,8 @@
             <list string="GitLab Projects">
                 <field name="name" />
                 <field name="position" />
-                <field name="pipeline_status" />
+                <field name="pipeline_status" widget="badge" decoration-success="pipeline_status == 'success'"
+                    decoration-danger="pipeline_status == 'fail'" />
                 <field name="code_score" />
                 <field name="branches" />
             </list>
@@ -43,7 +44,8 @@
                             <field name="name" readonly="True" />
                             <field name="link" readonly="True" widget="url" options="{'target': '_blank'}" />
                             <field name="git_link" readonly="True" widget="clipboard_url" options="{'target': '_blank'}" />
-                            <field name="pipeline_status" readonly="True" />
+                            <field name="pipeline_status" widget="badge" decoration-success="pipeline_status == 'success'"
+                                decoration-danger="pipeline_status == 'fail'" readonly="True" />
                             <field name="odoo_version_id" />
                         </group>
                     </group>
