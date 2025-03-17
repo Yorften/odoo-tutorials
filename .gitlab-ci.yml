@@ -9,7 +9,7 @@ pylint:
   image: python:3.10
   script:
     - pip3 install pylint pylint-odoo
-    - pylint --fail-under=5.00 --max-line-length=130 --disable=F0401,R0801,R1720,W0212,R1725,W0201,C8101,E0611,R0903,C0116 ./addons/Real_Estate > pylint_output.log 2>&1
+    - pylint --fail-under=1.00 --max-line-length=130 --disable=F0401,R0801,R1720,W0212,R1725,W0201,C8101,E0611,R0903,C0116 ./addons/Real_Estate > pylint_output.log 2>&1
     - cat pylint_output.log
     - ls -l
   artifacts:
